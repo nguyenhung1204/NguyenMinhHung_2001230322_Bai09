@@ -1,0 +1,92 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <title>Fahasa.com - Mua Sách Online</title>
+    <link rel="stylesheet" href="~/Content/style.css" />
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <img src="~/Content/HinhAnh/logo.jpg" alt="Logo" class="logo" />
+        </div>
+
+        <div class="header-center">
+            <form action="/Home/Search" method="get">
+                <input type="text" placeholder="Search..." class="search-input" name="search" />
+                <button class="btn-search">🔍</button>
+            </form>
+        </div>
+
+        <div class="header-right">
+            <a href="#">Trang chủ</a>
+            <a href="#">Tìm kiếm</a>
+            <a href="#">Đăng ký</a>
+            <a href="#">Đăng nhập</a>
+            <a href="#">Liên hệ</a>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <!-- SIDEBAR -->
+        <aside>
+            <div class="menu-section">
+                <h3>CHỦ ĐỀ SÁCH</h3>
+
+                <ul>
+                    @{
+                        var listChuDe = ViewBag.ListChuDe as List<NguyenMinhHung_2001230322_Bai9.Models.CHUDE>;
+                    }
+
+                    @foreach (var cd in listChuDe)
+                    {
+                        <li>
+                            @Html.ActionLink(cd.TenChuDe, "SachTheoChuDe", "Home", new { MaCD = cd.MaChuDe }, null)
+                        </li>
+                    }
+                </ul>
+            </div>
+
+           
+            <div class="menu-section">
+                <h3>NHÀ XUẤT BẢN</h3>
+                <ul>
+                    @{
+                        var listNXB = ViewBag.ListNXB as List<NguyenMinhHung_2001230322_Bai9.Models.NHAXUATBAN>;
+                    }
+                   
+
+                    @foreach (var nxb in listNXB)
+                    {
+                        <li>
+                            @Html.ActionLink(nxb.TenNXB, "SachTheoNXB","Home",new { MANXB = nxb.MaNXB},null)
+                        </li>
+                    }
+                </ul>
+            </div>
+        </aside>
+
+        <!-- CONTENT -->
+        <section class="content">
+            <img class="banner" src="https://cdn.pixabay.com/photo/2015/09/05/21/51/book-925589_960_720.jpg" alt="Banner" />
+            <div class="main-body">
+                @RenderBody()
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Liên hệ: Khoa CNTT - Trường Đại học Công nghiệp Thực phẩm TP.HCM</p>
+        <p>Địa chỉ: 140 Lê Trọng Tấn, Tân Phú, TP.HCM | Điện thoại: (028) 38161673</p>
+    </footer>
+</body>
+</html>

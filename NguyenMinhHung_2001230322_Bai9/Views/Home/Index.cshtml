@@ -1,0 +1,26 @@
+﻿@model IEnumerable<NguyenMinhHung_2001230322_Bai9.Models.SACH>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>LIST BOOK</h2>
+<div class="book-list">
+    @foreach (var item in Model)
+            {
+                <div class="book-card">
+                    <img src="~/Content/HinhAnh/@item.AnhBia" alt="@item.TenSach" />
+                    <h3>@item.TenSach</h3>
+                    <h3>@item.GiaBan</h3>
+                    <div class="view-detail">
+                        @Html.ActionLink("Xem chi tiết", "Details", "Home", new { id = item.MaSach.Trim() }, new { @class = "btn-detail" })
+
+                    </div>
+
+
+                </div>
+    }
+    
+</div>

@@ -1,0 +1,85 @@
+﻿@model NguyenMinhHung_2001230322_Bai9.Models.SACH
+
+
+<h2>Chi tiết sách</h2>
+
+<div class="book-detail">
+    <img src="~/Content/HinhAnh/@Model.AnhBia" alt="@Model.TenSach" width="250" class="book-cover" />
+    <div class="book-info">
+
+        <h3>@Model.TenSach</h3>
+        <p>Giá bán: @String.Format("{0:N0} VNĐ", Model.GiaBan)</p>
+        <p>Mô tả: @Model.MoTa</p>
+        <p>Nhà xuất bản: @Model.NHAXUATBAN.TenNXB</p>
+        <p>Chủ đề: @Model.CHUDE.TenChuDe</p>
+        <br />
+        <h3>Tác giả</h3>
+        <p>
+            @if (ViewBag.ListTacGia != null && ViewBag.ListTacGia.Count > 0)
+            {
+                @(string.Join(", ", ViewBag.ListTacGia))
+            }
+            else
+            {
+                <span>Chưa có thông tin tác giả</span>
+            }
+        </p>
+
+
+
+        <a href="@Url.Action("Index", "Home")">← Quay lại</a>
+
+    </div>
+</div>
+<h2>các tác giả có chung chủ đề </h2>
+<div class="book-list">
+    @if (ViewBag.sachchungchude != null && ViewBag.sachchungchude.Count > 0)
+    {
+        foreach (var item in ViewBag.sachchungchude)
+        {
+            <div class="book-card">
+
+                <img src="~/Content/HinhAnh/@item.AnhBia" alt="@item.TenSach" />
+                <h3>@item.TenSach</h3>
+                <h3>@item.GiaBan</h3>
+                <div class="view-detail">
+                    @Html.ActionLink("Xem chi tiết", "Details", "Home", new { id = item.MaSach.Trim() }, new { @class = "btn-detail" })
+
+                </div>
+
+            </div>
+        }
+    }
+    else
+    {
+        <p>Chưa có tác phẩm nào khác trong chủ đề này.</p>
+    }
+
+
+</div>
+<h2>Các sản phẩm có cùng nhà xuất bản </h2>
+<div class="book-list">
+    @if (ViewBag.sachcungNXB != null && ViewBag.sachcungNXB.Count > 0)
+    {
+        foreach (var item in ViewBag.sachcungNXB)
+        {
+            <div class="book-card">
+
+                <img src="~/Content/HinhAnh/@item.AnhBia" alt="@item.TenSach" />
+                <h3>@item.TenSach</h3>
+                <h3>@item.GiaBan</h3>
+                <div class="view-detail">
+                    @Html.ActionLink("Xem chi tiết", "Details", "Home", new { id = item.MaSach.Trim() }, new { @class = "btn-detail" })
+
+                </div>
+
+            </div>
+        }
+    }
+    else
+    {
+        <p>Chưa có tác phẩm nào khác trong chủ đề này.</p>
+    }
+
+    
+
