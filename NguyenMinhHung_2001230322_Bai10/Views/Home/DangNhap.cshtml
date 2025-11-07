@@ -1,0 +1,8 @@
+﻿@{ ViewBag.Title = "Đăng nhập"; }
+<h2>Đăng nhập</h2>
+<form method="post" class="form-auth">
+    <input name="txtName" placeholder="Tên khách hàng" class="form-control" />
+    <input name="txtPass" type="password" placeholder="Mật khẩu" class="form-control" />
+    <button type="submit" class="btn btn-success mt-2">Đăng nhập</button>
+</form>
+<div class="text-error">@ViewBag.err</div>

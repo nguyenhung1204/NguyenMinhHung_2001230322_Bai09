@@ -1,0 +1,24 @@
+﻿@model IEnumerable<NguyenMinhHung_2001230322_Bai10.Models.tbl_SanPham>
+
+<div class="book-grid">
+    @foreach (var item in Model)
+    {
+        <div class="book-card">
+            <img src="@Url.Content("~/Content/HinhAnh/" + (string.IsNullOrEmpty(item.HinhAnh) ? "no-image.png" : item.HinhAnh))"
+                 alt="@item.TenSP" />
+            <h3>@item.TenSP</h3>
+            <div class="price">@String.Format("{0:0,0} VND", item.DonGia)</div>
+
+            <div class="view-detail">
+                @Html.ActionLink(
+                    "CHỌN MUA",
+                    "ChonMua",          
+                    "Home",
+                    new { id = item.MaSanPham },    
+                    new { @class = "btn-detail" }
+                )
+            </div>
+
+        </div>
+    }
+</div>

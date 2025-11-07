@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "TaoDonDatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model NguyenMinhHung_2001230322_Bai10.Models.GioHang
+@{
+    var kh = (NguyenMinhHung_2001230322_Bai10.Models.tbl_KhachHang)Session["kh"];
+    ViewBag.Title = "Xác nhận đơn hàng";
+}
+<div class="confirm">
+    <form action="@Url.Action("TaoDonDatHang","Home")" method="post">
+        <h2>Thông tin đặt hàng</h2>
+        <table class="table w-auto">
+            <tr><td>Họ tên:</td><td>@kh.TenKH</td></tr>
+            <tr><td>Địa chỉ:</td><td>@kh.DiaChi</td></tr>
+            <tr><td>Điện thoại:</td><td>@kh.SoDienThoai</td></tr>
+            <tr><td>Ngày đặt:</td><td>@DateTime.Now.ToShortDateString()</td></tr>
+            <tr><td>Ngày giao:</td><td><input type="date" name="txtDate" class="form-control" required /></td></tr>
+            <tr><td></td><td><input type="submit" value="Đồng ý đặt hàng" class="btn btn-primary" /></td></tr>
+        </table>
+    </form>
+</div>
